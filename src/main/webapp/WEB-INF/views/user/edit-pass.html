@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+	
+</head>
+<body>
+	<div layout:fragment="content">
+		<nav aria-label="breadcrumb">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item"><a th:href="@{/admin/}">Home</a></li>
+		    <li class="breadcrumb-item"><a th:href="@{/admin/user/}">Usuários</a></li>
+		    <li class="breadcrumb-item active" aria-current="page">Adicionar/Editar Usuários</li>
+		  </ol>
+		</nav>
+		
+		<div class="row">
+			<div class="col-12">
+				<h2>Adicionar/Editar Usuários</h2>
+			</div>
+			<div class="col col-md-6">
+				<form th:action="@{/admin/user/pass/}" method="post" autocomplete="off" autocapitalize="none" enctype="multipart/form-data">
+					<div th:remove="tag" th:utext="${formConstruct}"></div>			
+				</form>
+			</div>
+		</div>
+		
+		<script type="text/javascript" th:utext="${formConstructJs}"></script>		
+	</div>
+</body>
+</html>

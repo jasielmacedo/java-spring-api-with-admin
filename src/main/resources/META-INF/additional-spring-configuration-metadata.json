@@ -1,0 +1,47 @@
+{"properties": [
+  {
+    "name": "apiadmin.user.admin.email",
+    "type": "java.lang.String",
+    "description": "Default initial admin email"
+  },
+  {
+    "name": "apiadmin.user.admin.username",
+    "type": "java.lang.String",
+    "description": "Default initial admin username"
+  },
+  {
+    "name": "apiadmin.user.admin.name",
+    "type": "java.lang.String",
+    "description": "Default initial admin name"
+  },
+  {
+    "name": "apiadmin.user.admin.password",
+    "type": "java.lang.String",
+    "description": "A description for 'apiadmin.user.admin.password"
+  },
+  {
+    "name": "apiadmin.security.jwt.jwtSecret",
+    "type": "java.lang.String",
+    "description": "Secret do generate Jwt Token"
+  },
+  {
+    "name": "apiadmin.security.jwt.jwtExpirationMs",
+    "type": "java.lang.Long",
+    "description": "JWT expiration in mileseconds"
+  },
+  {
+    "name": "apiadmin.api.version.url",
+    "type": "java.lang.String",
+    "description": "Used to create API Endpoints"
+  },
+  {
+    "name": "web.assets.pattern",
+    "type": "java.lang.String",
+    "description": "Define o padrao"
+  },
+  {
+    "name": "web.assets.directory",
+    "type": "java.lang.String",
+    "description": "A description for 'web.assets.directory'"
+  }
+]}

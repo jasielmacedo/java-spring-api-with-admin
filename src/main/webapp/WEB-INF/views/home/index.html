@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+	
+</head>
+<body>
+	<div layout:fragment="content">
+		<nav aria-label="breadcrumb">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item"><a th:href="@{/admin/}">Home</a></li>
+		    <li class="breadcrumb-item active" aria-current="page">Início</li>
+		  </ol>
+		</nav>
+	
+		<h2>
+			Bem-vindo ao sistema de administração
+		</h2>
+		<p>
+			Área administrativa destinada ao controle dos dados gerais da aplicação.
+		</p>
+	</div>
+</body>
+</html>

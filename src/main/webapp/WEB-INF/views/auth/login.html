@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout-login}">
+<head>
+    <title>Sign In</title>
+    <link rel="stylesheet" media="screen" th:href="@{/static/css/login.css}" />
+</head>
+<body class="text-center">
+	<form layout:fragment="content" class="form-signin" method="POST" action="">
+		  
+		 <h1 class="h3 mb-3 font-weight-normal">&Aacute;rea administrativa</h1>
+		 
+		 <th:block th:if="${errorNum > 0}">
+	        <div th:replace="fragments/alert :: alert (type=danger, message=${error})">&nbsp;</div>
+	    </th:block>
+		
+		  <label for="inputEmail" class="sr-only">Email address</label>		  
+		  <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email" required="required" autofocus>
+		  
+		  <label for="inputPassword" class="sr-only">Password</label>		  
+		  <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
+		  
+		  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+		  <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+		  
+		  <a href="#">Esqueceu a senha</a>
+		  <p class="mt-5 mb-3 text-muted">&copy; 2020 - ApiAdmin</p>
+		 
+	</form>
+</body>
+</html>

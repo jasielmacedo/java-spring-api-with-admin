@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+	
+</head>
+<body>
+	<div layout:fragment="content">
+		<nav aria-label="breadcrumb">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item"><a th:href="@{/admin/}">Home</a></li>
+		    <li class="breadcrumb-item"><a th:href="@{/admin/user}">Usuários</a></li>
+		    <li class="breadcrumb-item active" aria-current="page" th:text="${data.name}"></li>
+		  </ol>
+		</nav>
+		<div class="row">
+			<div class="col col-12">
+			
+				<h2>Usuário: <th:block th:text="${data.name}" /></h2>
+				<a th:href="@{/admin/user/edit/}+${data.id}" class='btn btn-info margin_b_10'><i class="fa fa-user"></i> Editar</a>
+				<a th:href="@{/admin/user/}+${data.id}" class='btn btn-warning margin_b_10 action' data-type="status" data-status="true"><i class="fa fa-lock"></i> Bloquear acesso</a>
+				<a th:href="@{/admin/user/}+${data.id}" class='btn btn-danger margin_b_10 action' data-type="delete"><i class="fa fa-user-times"></i> Remover</a>
+			</div>
+		</div>
+		<dl class="row">
+			  <dt class="col-sm-3">Nome:</dt>
+			  <dd class="col-sm-9" th:text="${data.name}"></dd>
+			  
+			  <dt class="col-sm-3">Email:</dt>
+			  <dd class="col-sm-9" th:text="${data.email}"></dd>
+			  
+			  <dt class="col-sm-3">Usuário de acesso:</dt>
+			  <dd class="col-sm-9" th:text="${data.username}"></dd>
+			  
+			  <dt class="col-sm-3">Criado em:</dt>
+			  <dd class="col-sm-9" th:text="${#dates.format(data.createdDate, 'dd/MM/yyyy  HH:mm')}"></dd>
+			  
+			  <dt class="col-sm-3">Última alteração em:</dt>
+			  <dd class="col-sm-9" th:text="${#dates.format(data.updatedDate, 'dd/MM/yyyy  HH:mm')}"></dd>
+		</dl>
+		
+	</div>
+	<script layout:fragment="footerAfter" type="text/javascript">
+		$(function(){
+			$('.action').click(function(event){
+				var type = $(this).attr('data-type');
+				
+				switch(type)
+				{
+					case "delete":
+						Ssx.confirm(function(){
+							window.location.href = window.location.href + "?user_delete=true";
+						},"Tem certeza que deseja apagar esse usuário?");
+					break;
+					case "status":
+						var status = $(this).attr('data-status');
+						var msg;
+						
+						 if(status){
+							msg =  "Tem certeza que deseja bloquear esse Usuário?\nEle não poderá mais logar no sistema\n";
+						 }else{
+							msg = "Tem certeza que deseja ativar esse Usuário?";
+						 }
+						
+						Ssx.confirm(function(){
+							window.location.href = redirectUrl +"?user_alter_status=true";
+						},msg);
+					break;
+				}
+				
+				event.preventDefault();
+			});
+		 });
+	</script>
+</body>
+</html>
+		

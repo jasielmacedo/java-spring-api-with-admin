@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+	
+</head>
+<body>
+	<div layout:fragment="content">
+		<nav aria-label="breadcrumb">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item"><a th:href="@{/admin/}">Home</a></li>
+		    <li class="breadcrumb-item active" aria-current="page">Usuários</li>
+		  </ol>
+		</nav>
+		
+		<div class="row">
+			<div class="col col-12">
+				<h2>Perfis</h2>
+				<div>
+					<a th:href="@{/admin/role/edit}" class='btn btn-success margin_b_10'><i class="fa fa-user-plus"></i> Adicionar Novo</a>
+				</div>
+			</div>
+			<div class="col col-12">
+				<div class="right margin_b_10">
+					<form th:action="@{/admin/role/}" method="get" class="input-group ">
+						  <div class="input-group-prepend">
+						  	<th:block th:if="${!search.isEmpty()}">
+							  	<a title='Limpar Busca' class='btn' th:href="@{/admin/role/}"><i class='fa fa-remove'></i></a>
+							 </th:block>
+						  </div>		
+						  <input type="text" class="form-control" name="s" th:value="${search}" placeholder="nome do perfil" maxlength="255">
+						  <span class="input-group-append">
+					         <input class="btn btn-outline-secondary" type="submit" value="Buscar">
+					      </span>
+					</form>
+				</div>
+			</div>
+			<div class="col col-12">
+				
+				<th:block th:if="${all.size() > 0}">
+					<table width="100%" class='table table-striped clear'>
+						<thead>
+							<tr>
+							    <th>&nbsp;</th>
+								<th>Nome</th>
+								<th>Tipo</th>
+								<th class='hidden-xs'>Criado em</th>
+								<th width="15%">&nbsp;</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="element: ${all}">
+							    <td><i class="fa fa-user"></i></td>
+							    <td th:text="${element.name}" />
+							    <td th:text="${element.role.toString()}" />
+							    <td th:text="${#dates.format(element.createdDate, 'dd/MM/yyyy  HH:mm')}" />
+							    <td align="right">
+								  <a th:href="@{/admin/role/}+${element.id}" class="btn btn-small btn-info">Visualizar</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					
+					<th:block th:if="${pagination.size() > 0}">
+						<nav aria-label="Pagination">
+						  <ul class="pagination justify-content-center">
+							  <th:block th:each="pg: ${pagination}">
+								  <li class="page-item disabled" th:if="${pg == currentPage}">
+								    	<a class="page-link" href="#" th:text="${pg}"></a>
+								   </li>
+								   <li class="page-item" th:unless="${pg == currentPage}">
+								    	<a class="page-link" th:href="@{/admin/role/?page=}+${pg}+'&s='+${search}" th:text="${pg}"></a>
+								   </li>
+							  </th:block>
+						  </ul>
+						</nav>
+				</th:block>
+				<th:block th:if="${pagination.size() == 0}">
+					<p>Nenhum usuário cadastrado</p>
+				</th:block>
+			</div>
+		</div>	
+	</div>
+</body>
+</html>
