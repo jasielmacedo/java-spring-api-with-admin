@@ -1,6 +1,6 @@
 # Java Spring API with Admin area
 
-I'm creating a public repository with this code but i'm using a customized version in another personal project.
+I've created a public repository with this code but i'm using a customized version in another personal project.
 
 ## Prerequisites
 
